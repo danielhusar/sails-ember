@@ -16,6 +16,17 @@
   <body>
 
     <script type="text/x-handlebars">
+      <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+              <li>{{#link-to 'login'}}Login{{/link-to}}</li>
+              <li>{{#link-to 'register'}}Register{{/link-to}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       {{outlet}}
     </script>
     <%- include user/login.ejs %>
@@ -23,6 +34,7 @@
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/handlebars-1.1.2.js"></script>
     <script src="js/libs/ember-1.5.1.js"></script>
+    <script src="js/libs/ember-model.js"></script>
     <script src="js/app.js"></script>
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>

@@ -14,6 +14,7 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+'use strict';
 
 module.exports = {
 
@@ -30,12 +31,17 @@ module.exports = {
     var bcrypt = require('bcrypt');
 
     if(req.body.email) {
+
       User.findOneByEmail(req.body.email).done(function (err, user) {
-        if (err) res.json({ error: 'DB error' }, 500);
+        if (err) {
+          res.json({ error: 'DB error' }, 500);
+        }
 
         if (user) {
           bcrypt.compare(req.body.password, user.password, function (err, match) {
-            if (err) res.json({ error: 'Server error' }, 500);
+            if (err) {
+              res.json({ error: 'Server error' }, 500);
+            }
 
             if (match) {
               // password match
@@ -43,7 +49,9 @@ module.exports = {
               res.json(user);
             } else {
               // invalid password
-              if (req.session.user) req.session.user = null;
+              if (req.session.user) {
+                req.session.user = null;
+              }
               res.json({ error: 'Invalid password' }, 400);
             }
           });
@@ -51,6 +59,7 @@ module.exports = {
           res.json({ error: 'User not found' }, 404);
         }
       });
+
     } else {
       res.json({ error: 'Email not present' }, 404);
     }
