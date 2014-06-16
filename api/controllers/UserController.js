@@ -34,13 +34,13 @@ module.exports = {
 
       User.findOneByEmail(req.body.email).done(function (err, user) {
         if (err) {
-          res.json({ error: 'DB error' }, 500);
+          res.json({ error: 'DB error' });
         }
 
         if (user) {
           bcrypt.compare(req.body.password, user.password, function (err, match) {
             if (err) {
-              res.json({ error: 'Server error' }, 500);
+              res.json({ error: 'Server error' });
             }
 
             if (match) {
@@ -52,16 +52,16 @@ module.exports = {
               if (req.session.user) {
                 req.session.user = null;
               }
-              res.json({ error: 'Invalid password' }, 400);
+              res.json({ error: 'Invalid password' });
             }
           });
         } else {
-          res.json({ error: 'User not found' }, 404);
+          res.json({ error: 'User not found' });
         }
       });
 
     } else {
-      res.json({ error: 'Email not present' }, 404);
+      res.json({ error: 'Email not present' });
     }
   }
 

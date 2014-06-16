@@ -1,16 +1,11 @@
-<script type="text/x-handlebars" data-template-name="index">
+<script type="text/x-handlebars" data-template-name="login">
   <div class="container">
     {{error}}
-    <form class="form-signin" role="form" action="user/login" method="post">
+    <form class="form-signin" role="form" {{action login on="submit"}}>
       <h2 class="form-signin-heading">Please sign in</h2>
-      <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-      <input type="password" name="password" class="form-control" placeholder="Password" required>
-      <label class="checkbox">
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-      <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
-      <button class="btn btn-lg btn-primary btn-block" type="button">Register</button>
-      <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+      {{input value=email type="text" class="form-control" placeholder="Email address" }}
+      {{input value=password type="password" class="form-control" placeholder="Password" }}
+      {{input class="btn btn-lg btn-success btn-block" type="submit" value="Sign in"}}
     </form>
   </div>
 </script>

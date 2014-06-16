@@ -6,8 +6,6 @@
   App.Router.map(function() {
     this.resource('register');
     this.resource('login');
-    this.resource('users');
-    this.resource('user', { path: ':id' });
   });
 
   App.IndexRoute = Ember.Route.extend({
@@ -17,28 +15,25 @@
   });
 
   App.IndexController = Ember.Controller.extend({
-    error: 'test'
+
   });
 
 
+  /** login controller **/
 
   App.LoginController = Ember.Controller.extend({
-    login: function() {
-      var newUser = App.Login.create({
-        email: this.get('loginEmail'),
-        password: this.get('loginPassword')
-      });
-      newUser.save();
+    error: '',
+    actions: {
+      login: function() {
+        Ember.$.post('user/login', this.getProperties('email', 'password')).then(function(data){
+          if(data.error) {
+            this.set('error', data.error);
+          } else {
+            this.set('error', '');
+          }
+        }.bind(this));
+      }
     }
   });
-
-  App.Login = Ember.Model.extend({
-    email: Ember.attr(),
-    password: Ember.attr(),
-  });
-
-  App.Login.adapter = Ember.RESTAdapter.create();
-  App.Login.url = 'login';
-  App.Login.collectionKey = 'error';
 
 })(this, this.Ember);
