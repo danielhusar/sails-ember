@@ -5,7 +5,7 @@
 
   App.IndexRoute = App.AuthRoute.extend({
     model: function(){
-      var token = this.controllerFor('login').get('token');
+      var token = this.controllerFor('login').get('currentUser');
       var email = '';
       if (token) {
         email = token.email;

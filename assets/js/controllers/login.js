@@ -3,7 +3,7 @@
 
   var App = window.App;
 
-  App.LoginController = Ember.Controller.extend({
+  App.LoginController = App.ApplicationController.extend({
 
     reset: function(){
       this.setProperties({
@@ -17,15 +17,23 @@
       login: function() {
         this.set('error', null);
         Ember.$.post('user/login', this.getProperties('email', 'password')).then(function(data) {
-          console.log(data);
           if(data.error) {
             this.set('error', data.error);
           } else {
             this.set('error', '');
-            this.set('token', {
+            this.set('currentUser', {
               id: data.id,
               email: data.email
             });
+
+            var attemptedTransition = this.get('attemptedTransition');
+            if (attemptedTransition) {
+              attemptedTransition.retry();
+              this.set('attemptedTransition', null);
+            } else {
+              // Redirect to 'articles' by default.
+              this.transitionToRoute('index');
+            }
           }
         }.bind(this));
       }

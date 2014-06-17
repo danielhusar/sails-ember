@@ -6,7 +6,7 @@
   App.AuthRoute = Ember.Route.extend({
 
     beforeModel: function(transition) {
-      if (!this.controllerFor('login').get('token')) {
+      if (!this.controllerFor('login').get('currentUser')) {
         this.redirectToLogin(transition);
       }
     },
@@ -16,6 +16,14 @@
       loginController.set('attemptedTransition', transition);
       this.transitionTo('login');
     },
+
+    events: {
+      error: function(reason, transition) {
+        if (reason.status === 404) {
+          this.redirectToLogin(transition);
+        }
+      }
+    }
 
   });
 
