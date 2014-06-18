@@ -63,6 +63,24 @@ module.exports = {
     } else {
       res.json({ error: 'Email not present' }, 404);
     }
+  },
+
+  listUsers: function(req, res){
+    if (!req.session.user) {
+      res.json({ error: 'Not logged in' }, 404);
+    } else {
+      User.findAll().done(function (err, users) {
+        if (err) {
+          res.json({ error: 'DB error' }, 404);
+        }
+        if (users) {
+          res.json(users);
+        } else {
+          res.json({ error: 'User not found' }, 404);
+        }
+      });
+
+    }
   }
 
 

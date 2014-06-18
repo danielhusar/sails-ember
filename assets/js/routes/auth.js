@@ -17,10 +17,12 @@
       this.transitionTo('login');
     },
 
-    events: {
-      error: function(reason, transition) {
-        if (reason.status === 404) {
-          this.redirectToLogin(transition);
+    actions: {
+      events: {
+        error: function(reason, transition) {
+          if (reason.status === 404) {
+            this.redirectToLogin(transition);
+          }
         }
       }
     }

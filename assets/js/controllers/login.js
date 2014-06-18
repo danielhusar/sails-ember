@@ -3,7 +3,7 @@
 
   var App = window.App;
 
-  App.LoginController = App.ApplicationController.extend({
+  App.LoginController = Ember.Controller.extend({
 
     reset: function(){
       this.setProperties({
@@ -20,7 +20,7 @@
           if(data.error) {
             this.set('error', data.error);
           } else {
-            this.set('error', '');
+            this.set('error', null);
             this.set('currentUser', {
               id: data.id,
               email: data.email
@@ -31,7 +31,6 @@
               attemptedTransition.retry();
               this.set('attemptedTransition', null);
             } else {
-              // Redirect to 'articles' by default.
               this.transitionToRoute('index');
             }
           }
