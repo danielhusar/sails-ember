@@ -3,7 +3,7 @@
 
   var App = window.App;
 
-  App.LoginController = Ember.Controller.extend({
+  App.RegisterController = Ember.Controller.extend({
 
     reset: function(){
       this.setProperties({

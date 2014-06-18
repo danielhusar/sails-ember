@@ -65,6 +65,11 @@ module.exports = {
     }
   },
 
+  logout: function (req, res) {
+    req.session.user = null;
+    res.json({});
+  },
+
   listUsers: function(req, res){
     if (!req.session.user) {
       res.json({ error: 'Not logged in' }, 404);
