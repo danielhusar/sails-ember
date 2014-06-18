@@ -32,8 +32,6 @@
           </div>
         </div>
       </div>
-
-      {{currentUser}}
       {{outlet}}
     </script>
     <%- include todo/users.ejs %>
@@ -51,8 +49,10 @@
     <script src="js/routes/auth.js"></script>
 
     <script src="js/models/index.js"></script>
+    <script src="js/models/users.js"></script>
 
     <script src="js/controllers/auth.js"></script>
+    <script src="js/controllers/application.js"></script>
     <script src="js/controllers/login.js"></script>
     <script src="js/controllers/logout.js"></script>
     <script src="js/controllers/index.js"></script>

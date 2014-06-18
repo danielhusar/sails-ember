@@ -69,7 +69,7 @@ module.exports = {
     if (!req.session.user) {
       res.json({ error: 'Not logged in' }, 404);
     } else {
-      User.findAll().done(function (err, users) {
+      User.find().done(function (err, users) {
         if (err) {
           res.json({ error: 'DB error' }, 404);
         }

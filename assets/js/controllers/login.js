@@ -13,6 +13,8 @@
       });
     },
 
+    test: 'aa',
+
     actions: {
       login: function() {
         this.set('error', null);

@@ -6,7 +6,7 @@
   App.UsersRoute = App.AuthRoute.extend({
     model: function(){
       var user = this.controllerFor('login').get('currentUser');
-      return Ember.$.post('todo/users', {email: user.email});
+      return Ember.$.post('user/listUsers', {email: user.email});
     }
   });
 
